@@ -1,15 +1,19 @@
-FROM debian:stable-slim
+FROM ubuntu:22.04
 
-LABEL maintainer="YourName <your@email.com>"
+RUN apt-get update && apt-get install -y \
+    cowsay \
+    fortune-mod \
+    netcat-openbsd \
+    bash
 
-RUN apt-get update && \
-    apt-get install -y fortune-mod cowsay netcat && \
-    rm -rf /var/lib/apt/lists/*
+ENV PATH="$PATH:/usr/games"
 
-COPY wisecow.sh /wisecow.sh
-RUN chmod +x /wisecow.sh
+WORKDIR /app
+
+COPY wisecow.sh /app/wisecow.sh
+
+RUN chmod +x /app/wisecow.sh
 
 EXPOSE 4499
 
-CMD ["/wisecow.sh"]
-
+CMD ["bash", "/app/wisecow.sh"]
