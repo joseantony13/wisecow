@@ -1,9 +1,9 @@
-apiVersion: apps/v1
+deployment.yamlapiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wisecow
+  name: wisecow-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: wisecow
@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: wisecow
-        image: ghcr.io/YOUR_GITHUB_ID/wisecow:latest
+        image: jose22an/wisecow:latest
         ports:
         - containerPort: 4499
-
