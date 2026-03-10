@@ -1,0 +1,19 @@
+deployment.yamlapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wisecow-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wisecow
+  template:
+    metadata:
+      labels:
+        app: wisecow
+    spec:
+      containers:
+      - name: wisecow
+        image: jose22an/wisecow:latest
+        ports:
+        - containerPort: 4499
